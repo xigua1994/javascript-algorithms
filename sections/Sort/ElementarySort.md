@@ -48,20 +48,21 @@ let insertSort = (array) => {
 
 ## 希尔排序
 
+在大规模乱序数组中，插入元素只会交换相邻的元素的特性导致了排序过慢，这个时候就需要对插入排序进行改造。希尔排序通过交换不相邻的元素以对数组进行局部
+排序，并最终使用插入排序将局部有序的数组排序。
+
 ```angularjs
-let shellSort = (array) => {
-  let len = array.length,
-    temp,
-    gap;
+let shellSort = arr => {
+  let temp,len = arr.length,gap;
   for(gap = parseInt(len/2);gap>=1;gap = parseInt(gap/2)){
     for(let i = gap;i<len;i++){
-      temp = array[i];
-      while(temp<array[i-gap]){
-        array[i] = array[i-gap];
-        array[i-gap] = temp;
+      temp = arr[i];
+      if(temp < arr[i-gap]){
+        arr[i] = arr[i-gap];
+        arr[i-gap] = temp;
       }
     }
   }
-  return array;
+  return arr;
 }
 ```
