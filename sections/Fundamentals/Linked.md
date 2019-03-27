@@ -128,11 +128,6 @@ var mergeTwoLists = function(l1, l2) {
 };
 ```
 
-
-
-
-
-
 给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。
 ```
 示例：
@@ -159,22 +154,23 @@ var removeNthFromEnd = function(head,n){
 
 ```
 var removeNthFromEnd = function(head,n){
-  let node = head,
-    len = 0,
-    tempNode = new ListNode(0);
+  let tempNode = new ListNode(0),
+    node = head,
+    len = 0;
   tempNode.next = head;
-  
-  while(node){
+  //获取链表的长度
+  while(node != null){
     len ++;
     node = node.next;
   }
-
   len -= n;
   node = tempNode;
-  while(len){
+  //找到第l-n个元素
+  while(len>0){
     len --;
     node = node.next;
   }
+  //赋值
   node.next = node.next.next;
   return tempNode.next;
 }
